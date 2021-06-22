@@ -1,5 +1,5 @@
 // Resolvers define the technique for fetching the types defined in the
-// schema. This resolver retrieves books from the "books" array above.
+// schema. .
 const Post= require('./models/Post.model');
 
 const resolvers = {
@@ -19,7 +19,17 @@ const resolvers = {
             await post.save();
             console.log(post)
             return post;
-    },
+        },
+        deletePost: async(_parent,{id},_context,_info) =>{
+            await Post.findByIdAndDelete(id);
+            return "Operation successful,Post deleted"
+        },
+        updatePost:async(_parent,args,_context,_info) =>{
+            const {id} = args;
+            const {title,description} = args.post;
+            const updatePost = await Post.findByIdAndUpdate(id,{title,description},{new:true});
+            return updatePost;
+        },
     },
 };
 

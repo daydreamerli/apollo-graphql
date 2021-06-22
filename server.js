@@ -18,7 +18,8 @@ async function startServer (){
 
     await mongoose.connect(process.env.DB_CONNECT,{
         useUnifiedTopology: true,
-        useNewUrlParser:true
+        useNewUrlParser:true,
+        useFindAndModify:false
     })
     console.log('Mongoose connected to MongoDB Atlas')
     app.listen(port,() => console.log(`Apollo server is up and running on port: ${port}`))
