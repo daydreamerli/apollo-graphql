@@ -12,7 +12,7 @@ const resolvers = {
             return await Post.findById(id);
         },
         getAllAuthors: async () =>{
-            return await Auhtor.find();
+            return await Author.find();
          },
          getAuthor: async(_parent,{id},_context,_info) =>{
             return await Author.findById(id);
