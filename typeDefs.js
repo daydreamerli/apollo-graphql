@@ -9,7 +9,13 @@ that together define the "shape" of queries that are executed against your data.
 # the "books" query returns an array of zero or more Books (defined above).
 */
 const typeDefs = gql`
-
+    
+  type Author{
+    id:ID
+    firstName: String
+    lastName: String
+    email:String
+  }
   type Post{
     id:ID
     title: String
@@ -19,17 +25,27 @@ const typeDefs = gql`
   type Query {
     getAllPosts: [Post]
     getPost(id:ID): Post
+    getAllAuthors:[Author]
+    getAuthor(id:ID):Author
   }
 
   input PostInput{
     title:String,
     description:String
   }
+  input AuthorInput{
+    firstName:String,
+    lastName:String,
+    email:String
+  }
 
   type Mutation{
       createPost(post: PostInput):Post
       deletePost(id:ID):String
       updatePost(id:ID,post:PostInput):Post
+      createAuthor(author:AuthorInput):Author
+      updateAuthor(id:ID,author:AuthorInput):Author
+      deleteAuthor(id:ID):String
   }
 `;
 
